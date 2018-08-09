@@ -25,3 +25,9 @@
     (is (= true (numeric? "-0.0001")))
     (is (= false (numeric? "-1341.41.41")))
     (is (= false (numeric? "not a number")))))
+
+
+(deftest update-val-test
+  (testing
+    (is (= {:a 1} (update-val {:a 2} #(/ % 2))))
+    (is (= {:b 2 :c 3} (update-val {:b 1 :c 2} inc)))))

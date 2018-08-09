@@ -38,4 +38,8 @@
     (take (Math/round (* n (count coll))) (shuffle coll))))
 
 
+(defn update-val [m f & args]
+  "Returns input map with fn applied to each value"
+  (reduce (fn [r [k v]] (assoc r k (apply f v args))) {} m))
+
 
