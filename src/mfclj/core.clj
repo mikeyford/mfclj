@@ -45,7 +45,7 @@
 
 (defn sim-expected-value [n stochastic-fn]
   "Performs n simulations of stochastic-fn with no args and returns expected value(s)"
-  (let [result (repeatedly n stochastic-fn)]
-    (if (instance? clojure.lang.PersistentArrayMap (first result))
-      (update-vals (apply merge-with + result) #(float (/ % n))))
-      (float (/ (reduce + result)))))
+  (let [results (repeatedly n stochastic-fn)]
+    (if (instance? clojure.lang.PersistentArrayMap (first results))
+      (update-vals (apply merge-with + results) #(float (/ % n))))
+      (float (/ (reduce + results) n))))
