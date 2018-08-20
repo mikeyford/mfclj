@@ -38,8 +38,14 @@
     (take (Math/round (* n (count coll))) (shuffle coll))))
 
 
-(defn update-val [m f & args]
+(defn update-vals [m f & args]
   "Returns input map with fn applied to each value"
   (reduce (fn [r [k v]] (assoc r k (apply f v args))) {} m))
 
 
+(defn sim-expected-value [n stochastic-fn]
+  "Performs n simulations of stochastic-fn with no args and returns expected value(s)"
+  (let [result (repeatedly n stochastic-fn)]
+    (if (instance? clojure.lang.PersistentArrayMap (first result))
+      (update-vals (apply merge-with + result) #(float (/ % n))))
+      (float (/ (reduce + result)))))

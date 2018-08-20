@@ -27,7 +27,7 @@
     (is (= false (numeric? "not a number")))))
 
 
-(deftest update-val-test
+(deftest update-vals-test
   (testing
-    (is (= {:a 1} (update-val {:a 2} #(/ % 2))))
-    (is (= {:b 2 :c 3} (update-val {:b 1 :c 2} inc)))))
+    (is (= {:a 1} (update-vals {:a 2} #(/ % 2))))
+    (is (= {:b 2 :c 3} (update-vals {:b 1 :c 2} inc)))))
